@@ -1,21 +1,131 @@
 ---
 import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://meridian-k7x4.vercel.app';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Meridian',
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.svg`,
+    description:
+      'Meridian is a specialty coffee brand built for the curious drinker — sourced at peak terroir, roasted with editorial precision.',
+    slogan: 'Coffee at the Intersection of Origin and Craft',
+    sameAs: [],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Meridian',
+    url: siteUrl,
+    description:
+      'Join the Meridian waitlist for a new specialty coffee brand. Single-origin sourcing, small-batch roasting, editorial storytelling.',
+  },
+];
 ---
 
 <Base
   title="Meridian — Specialty Coffee, Coming Soon"
   description="Meridian is a new specialty coffee brand arriving soon. Join the waitlist for early access, origin stories, and first-roast drops."
-  noindex={true}
+  structuredData={structuredData}
 >
-  <main class="min-h-screen flex flex-col items-center justify-center px-6 text-center">
-    <div class="max-w-xl">
-      <p class="font-serif text-[0.9rem] uppercase tracking-[0.32em] text-[color:var(--color-smoke)]">Meridian · Specialty Coffee</p>
-      <h1 class="font-serif mt-8 text-4xl md:text-5xl leading-[1.05] animate-slowpulse">
-        Building something<br />worth brewing.
-      </h1>
-      <p class="mt-8 text-base text-[color:var(--color-smoke)]">
-        The site is coming to life — refresh to watch it take shape.
+  <Header current="/" />
+
+  <!-- HERO -->
+  <main>
+    <section class="max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-20 md:pb-32">
+      <p class="font-serif text-[0.72rem] uppercase tracking-[0.34em] text-[color:var(--color-smoke)]">
+        Est. 2025 · Arriving this season
       </p>
-    </div>
+      <h1 class="font-serif mt-8 text-[2.6rem] sm:text-5xl md:text-7xl leading-[1.02] tracking-[-0.01em] max-w-4xl">
+        Coffee at the<br class="hidden sm:block" />
+        Intersection of<br class="hidden sm:block" />
+        <span class="italic text-[color:var(--color-ember)]">Origin</span> &amp; Craft.
+      </h1>
+      <p class="mt-10 max-w-xl text-base md:text-lg leading-relaxed text-[color:var(--color-smoke)]">
+        Meridian is a new <strong class="text-current font-medium">specialty coffee brand</strong> built for the curious drinker. Sourced at peak terroir, roasted with editorial precision, and delivered with a story worth reading. The first release lands soon — the waitlist is open.
+      </p>
+
+      <div class="mt-12">
+        <WaitlistForm source="hero" />
+      </div>
+
+      <!-- meridian line — the literal "meridian" -->
+      <div class="mt-20 flex items-center gap-6">
+        <span class="block h-px w-20 bg-current/30"></span>
+        <span class="font-serif text-[0.72rem] tracking-[0.28em] uppercase text-[color:var(--color-smoke)]">
+          The Meridian · 01
+        </span>
+      </div>
+    </section>
+
+    <!-- STORY STRIP -->
+    <section class="border-y border-[color:var(--color-smoke)]/20 bg-[color:var(--color-smoke)]/5">
+      <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28 grid md:grid-cols-[1fr_1.4fr] gap-16 items-start">
+        <div>
+          <p class="font-serif text-[0.72rem] tracking-[0.28em] uppercase text-[color:var(--color-smoke)]">
+            The Brand Story
+          </p>
+          <h2 class="font-serif mt-6 text-3xl md:text-[2.6rem] leading-[1.1]">
+            Three pillars.<br />
+            One cup.
+          </h2>
+        </div>
+        <div class="grid gap-10">
+          <article>
+            <p class="font-serif italic text-sm text-[color:var(--color-ember)] tracking-wider uppercase">I. Origin</p>
+            <h3 class="font-serif text-xl mt-3">Sourced at peak terroir.</h3>
+            <p class="mt-3 text-[color:var(--color-smoke)] leading-relaxed">
+              We travel. We taste. We buy one harvest at a time from a short list of growers — many of whom we’ve known for years — across Ethiopia, Colombia, Kenya and Guatemala. If it doesn’t earn a place in the next release, it doesn’t ship.
+            </p>
+          </article>
+          <article>
+            <p class="font-serif italic text-sm text-[color:var(--color-ember)] tracking-wider uppercase">II. Craft</p>
+            <h3 class="font-serif text-xl mt-3">Roasted with editorial precision.</h3>
+            <p class="mt-3 text-[color:var(--color-smoke)] leading-relaxed">
+              Every lot is profiled individually and roasted in small batches on a restored 12-kilo drum. We chase clarity, not caramel. The result is coffee that tastes like where it came from — florals, stone fruit, honey, cocoa — never like a roast level.
+            </p>
+          </article>
+          <article>
+            <p class="font-serif italic text-sm text-[color:var(--color-ember)] tracking-wider uppercase">III. Story</p>
+            <h3 class="font-serif text-xl mt-3">Delivered with a story worth reading.</h3>
+            <p class="mt-3 text-[color:var(--color-smoke)] leading-relaxed">
+              Every bag arrives with a field note — the farm, the altitude, the varietal, the people. Read it while the kettle boils. Coffee is better when you know it. That’s Meridian.
+            </p>
+            <p class="mt-5">
+              <a href="/about" class="font-serif text-sm tracking-[0.2em] uppercase border-b border-current pb-1 hover:text-[color:var(--color-ember)]">
+                Read the full story →
+              </a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECONDARY CTA -->
+    <section class="max-w-3xl mx-auto px-6 md:px-10 py-20 md:py-28 text-center">
+      <p class="font-serif text-[0.72rem] tracking-[0.28em] uppercase text-[color:var(--color-smoke)]">
+        First Release
+      </p>
+      <h2 class="font-serif mt-6 text-3xl md:text-5xl leading-[1.05]">
+        Be the first to pour it.
+      </h2>
+      <p class="mt-6 text-[color:var(--color-smoke)] leading-relaxed">
+        Waitlist members get 48 hours of early access on launch day, a founding-member discount, and the first field notes from our trips to origin. Join us.
+      </p>
+      <div class="mt-10 flex justify-center">
+        <WaitlistForm source="footer-cta" />
+      </div>
+      <p class="mt-10 text-xs text-[color:var(--color-smoke)]">
+        Want the long version? <a href="/about" class="underline underline-offset-4 hover:text-current">Read why we started Meridian</a>.
+      </p>
+    </section>
   </main>
+
+  <Footer />
 </Base>

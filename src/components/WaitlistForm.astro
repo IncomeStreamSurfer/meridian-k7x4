@@ -1,0 +1,59 @@
+---
+const { source = 'homepage', compact = false } = Astro.props as {
+  source?: string;
+  compact?: boolean;
+};
+---
+
+<form
+  method="POST"
+  action="/api/waitlist"
+  class:list={[
+    'w-full',
+    compact ? 'max-w-sm' : 'max-w-md',
+  ]}
+  data-waitlist-form
+>
+  <input type="hidden" name="source" value={source} />
+  <!-- honeypot -->
+  <label class="absolute left-[-9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+    Website
+    <input type="text" name="website" tabindex="-1" autocomplete="off" />
+  </label>
+
+  <div class="flex flex-col sm:flex-row gap-3">
+    <label class="sr-only" for={`email-${source}`}>Email</label>
+    <input
+      id={`email-${source}`}
+      type="email"
+      name="email"
+      required
+      placeholder="you@example.com"
+      autocomplete="email"
+      class="flex-1 bg-transparent border border-current/30 focus:border-current/70 rounded-none px-4 py-3 text-base placeholder:text-[color:var(--color-smoke)] outline-none transition-colors"
+    />
+    <button
+      type="submit"
+      class="whitespace-nowrap px-6 py-3 font-serif text-[0.8rem] tracking-[0.25em] uppercase bg-[color:var(--color-ink)] text-[color:var(--color-cream)] dark:bg-[color:var(--color-cream)] dark:text-[color:var(--color-ink)] border border-current hover:opacity-90 transition-opacity"
+    >
+      Join Waitlist
+    </button>
+  </div>
+  <p class="mt-3 text-xs text-[color:var(--color-smoke)]" data-waitlist-status>
+    We’ll only email you about Meridian. No spam, no resale.
+  </p>
+</form>
+
+<script is:inline>
+  document.querySelectorAll('[data-waitlist-form]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.setAttribute('disabled', 'true');
+        btn.textContent = 'Joining...';
+      }
+      const status = form.querySelector('[data-waitlist-status]');
+      if (status) status.textContent = 'Saving your seat at the table...';
+    });
+  });
+</script>

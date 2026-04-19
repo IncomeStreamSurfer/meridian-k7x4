@@ -1,0 +1,45 @@
+---
+const { current = '/' } = Astro.props as { current?: string };
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'Our Story' },
+];
+---
+<header class="w-full border-b border-[color:var(--color-smoke)]/20">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 flex items-center justify-between py-6">
+    <a href="/" class="flex items-center gap-3 group">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-current/40 font-serif text-lg">M</span>
+      <span class="font-serif text-lg tracking-[0.2em] uppercase">Meridian</span>
+    </a>
+    <nav class="flex items-center gap-8 text-sm">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class:list={[
+            'font-serif tracking-wider uppercase text-[0.75rem] transition-opacity',
+            current === l.href ? 'opacity-100' : 'opacity-60 hover:opacity-100',
+          ]}
+        >{l.label}</a>
+      ))}
+      <button
+        id="theme-toggle"
+        aria-label="Toggle theme"
+        class="relative h-8 w-8 rounded-full border border-current/30 flex items-center justify-center hover:border-current/60 transition-colors"
+      >
+        <svg class="h-4 w-4 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="h-4 w-4 block dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  (function () {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const next = document.documentElement.classList.toggle('dark') ? 'dark' : 'light';
+      try { localStorage.setItem('meridian-theme', next); } catch (_e) {}
+    });
+  })();
+</script>

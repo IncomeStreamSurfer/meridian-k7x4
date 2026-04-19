@@ -1,0 +1,20 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-[color:var(--color-smoke)]/20 mt-24">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-sm">
+    <div class="flex items-center gap-3">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-current/40 font-serif text-lg">M</span>
+      <div>
+        <p class="font-serif tracking-[0.2em] uppercase text-[0.72rem]">Meridian</p>
+        <p class="text-[color:var(--color-smoke)] text-xs">Specialty coffee, coming soon.</p>
+      </div>
+    </div>
+    <nav class="flex items-center gap-6 text-[0.72rem] tracking-widest uppercase font-serif">
+      <a href="/" class="opacity-60 hover:opacity-100">Home</a>
+      <a href="/about" class="opacity-60 hover:opacity-100">Our Story</a>
+      <a href="/thanks" class="opacity-60 hover:opacity-100">Waitlist</a>
+    </nav>
+    <p class="text-[color:var(--color-smoke)] text-xs">© {year} Meridian Coffee Co.</p>
+  </div>
+</footer>

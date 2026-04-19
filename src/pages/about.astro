@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://meridian-k7x4.vercel.app';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'Why We Started Meridian',
+    url: `${siteUrl}/about`,
+    description:
+      'Meridian was built on one belief: great coffee deserves a great story. Learn about our sourcing philosophy, roasting approach, and the team.',
+    primaryImageOfPage: `${siteUrl}/og-default.svg`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Meridian',
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.svg`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Our Story', item: `${siteUrl}/about` },
+    ],
+  },
+];
+---
+
+<Base
+  title="Our Story | Meridian Specialty Coffee"
+  description="Meridian was built on one belief: great coffee deserves a great story. Learn about our sourcing philosophy, roasting approach, and the team behind the brand."
+  structuredData={structuredData}
+>
+  <Header current="/about" />
+
+  <main>
+    <!-- HERO -->
+    <section class="max-w-3xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-12">
+      <p class="font-serif text-[0.72rem] uppercase tracking-[0.34em] text-[color:var(--color-smoke)]">
+        Our Story · Est. 2025
+      </p>
+      <h1 class="font-serif mt-8 text-[2.4rem] sm:text-5xl md:text-6xl leading-[1.05] tracking-[-0.01em]">
+        Why We Started <span class="italic text-[color:var(--color-ember)]">Meridian</span>.
+      </h1>
+      <p class="mt-8 text-lg leading-relaxed text-[color:var(--color-smoke)]">
+        We are a small team of coffee people — buyers, roasters, baristas, designers — building the <strong class="text-current font-medium">craft coffee roaster brand story</strong> we wanted to read as drinkers. What follows is the long version. If you like it, <a href="/" class="underline underline-offset-4 hover:text-current">there’s a waitlist on the home page</a>. We’d love to have you.
+      </p>
+    </section>
+
+    <!-- ARTICLE BODY -->
+    <article class="max-w-3xl mx-auto px-6 md:px-10 pb-20 font-serif text-[1.05rem] leading-[1.85] tracking-[-0.003em]">
+      <h2 class="font-serif text-2xl md:text-3xl mt-14 mb-6 not-italic">The Meridian, defined.</h2>
+      <p>
+        A meridian is a line drawn from pole to pole — a way of locating yourself against the rest of the world. In coffee, it’s the moment the cup finds you: the small, specific flavour that connects a grower’s hillside to your kitchen counter. That’s the line we’re drawing. One harvest, one roast, one cup at a time.
+      </p>
+      <p class="mt-6">
+        The name is a promise. Every release at Meridian is tied to a place and a season. You will never order a bag in March and get the same coffee in September. That’s not how coffee works. That’s not how we work.
+      </p>
+
+      <h2 class="font-serif text-2xl md:text-3xl mt-16 mb-6 not-italic">The belief.</h2>
+      <p>
+        Specialty coffee is the only agricultural product most of us buy every day without knowing anything about it. We drink it at 7am and we don’t ask who grew it, at what altitude, in what varietal, what the rain did last season, or what the farmgate price was. We don’t because nobody tells us. Meridian was built on the belief that if people knew, they would care. And if they cared, the coffee — and the farmer — would both be better off.
+      </p>
+      <p class="mt-6">
+        So we’re telling. Every bag ships with a field note — not a marketing card, a <em>field note</em> — that tells you the farm, the elevation, the varietal, the processing method, and the person whose work is inside the bag. Read it while the kettle boils. It takes thirty seconds. It changes how the cup tastes.
+      </p>
+
+      <h2 class="font-serif text-2xl md:text-3xl mt-16 mb-6 not-italic">How we source.</h2>
+      <p>
+        We buy relationship coffee. That is trade jargon for: we fly, we taste, we shake hands, we come back. We do not buy from brokers who can’t tell us the farm. We do not buy commodity-grade green coffee and roast it dark to hide the flaws. We pay above Fair Trade on every lot and we publish what we pay on the bag.
+      </p>
+      <p class="mt-6">
+        Our founding buying trips — Yirgacheffe, Huila, Nyeri, Huehuetenango — have given us a short list of growers whose work we want to carry for years, not quarters. When a lot sells out, it’s out. We don’t backfill. That’s what makes it <strong class="text-current font-medium">single origin coffee</strong> worth pouring slowly.
+      </p>
+
+      <h2 class="font-serif text-2xl md:text-3xl mt-16 mb-6 not-italic">How we roast.</h2>
+      <p>
+        Every lot is profiled individually on a restored 12-kilo drum roaster. We roast to development, not to colour, which is another way of saying we chase clarity instead of caramel. A Gesha should taste like jasmine and bergamot. A natural Ethiopia should taste like blueberry and raspberry gummy. A washed Kenyan should taste like blackcurrant and cane sugar. If you can’t taste those things in the cup, we didn’t do our job.
+      </p>
+      <p class="mt-6">
+        <strong class="text-current font-medium">Small batch coffee</strong> is not a marketing adjective here — it’s a constraint. The drum holds 12 kilos at a time. Each roast is logged, tasted on a nine-point SCA form, and either cleared for release or rerun. Nothing ships that we wouldn’t drink at home.
+      </p>
+
+      <h2 class="font-serif text-2xl md:text-3xl mt-16 mb-6 not-italic">How we ship.</h2>
+      <p>
+        Roasted Monday or Thursday, shipped the same day, at your door within 48 hours in most of the country. Every bag has a roast date on the bottom — not a best-before. Coffee isn’t milk; it doesn’t “go off” on a fixed day. It opens up a few days after roast, peaks around day ten to twenty, and slowly fades from there. We ship you the opening, not the fade.
+      </p>
+      <p class="mt-6">
+        On launch day, waitlist members will see the <strong class="text-current font-medium">artisan coffee subscription</strong> go live before anyone else — a three-bag, six-bag, or twelve-bag cadence with our rotating releases and full flexibility to pause, skip, or swap any shipment. No lock-in, no dark patterns, no monthly mystery bags of stale blend.
+      </p>
+
+      <h2 class="font-serif text-2xl md:text-3xl mt-16 mb-6 not-italic">Who we are.</h2>
+      <p>
+        Meridian is a small founding team. A green buyer who spent seven years on the trading floor of a large importer and got tired of watching good coffee get blended into anonymity. A head roaster who cut her teeth in three of the best roasteries in Europe. A creative director who has made brand systems for magazines, restaurants and two of your favourite independent bookshops. A designer-developer who built this site while the roaster was still warm.
+      </p>
+      <p class="mt-6">
+        We’re based in a small roastery on the edge of the city. Open by appointment once we launch — you’ll be able to book a cupping through the site. Until then: thank you for reading this far. It means a lot.
+      </p>
+
+      <!-- CTA -->
+      <div class="mt-20 border-t border-[color:var(--color-smoke)]/30 pt-12 not-italic">
+        <p class="font-serif text-[0.72rem] tracking-[0.28em] uppercase text-[color:var(--color-smoke)]">
+          Ready?
+        </p>
+        <h2 class="font-serif mt-4 text-2xl md:text-3xl leading-tight">
+          Join the waitlist. We’ll send the first field note before we ship the first bag.
+        </h2>
+        <div class="mt-8">
+          <WaitlistForm source="about-footer" />
+        </div>
+        <p class="mt-8 text-sm text-[color:var(--color-smoke)]">
+          Already signed up? <a href="/thanks" class="underline underline-offset-4 hover:text-current">Here’s what happens next →</a>
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Base>
