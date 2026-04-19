@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+  --color-cream: #f5f1ea;
+  --color-ink: #141110;
+  --color-ember: #b84d2f;
+  --color-smoke: #8c857d;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-sans);
+}
+
+html.dark {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+
+body { min-height: 100vh; }
+
+.font-serif { font-family: var(--font-serif); font-optical-sizing: auto; font-variation-settings: "opsz" 96, "SOFT" 30; }
+
+@keyframes slowpulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+.animate-slowpulse { animation: slowpulse 2.4s ease-in-out infinite; }
